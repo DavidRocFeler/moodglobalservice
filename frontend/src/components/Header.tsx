@@ -1,248 +1,127 @@
-'use client';
-
-import { useState } from 'react';
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import Collapse from '@mui/material/Collapse'
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import { navigationMock } from '@/mock/navigation.mock';
-import Link from 'next/link';
-import Logo from './ui/Logo';
+import React from 'react';
+import { Box } from '@mui/material';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuContentItem,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/NavigationMenu";
+import { ChevronRight } from 'lucide-react';
+import { headerData } from '@/mock/navbar.mock';
 
 const Header = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const navItems = navigationMock;
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
-
-  const handleCloseDrawer = () => {
-    if (mobileOpen) {
-      setMobileOpen(false);
-    }
-  };
-
   return (
-    <AppBar 
-      component="nav" 
-      position="fixed"
-      sx={{ 
-        backgroundColor: 'brand.red', 
-        borderBottom: 1,
-        borderColor: 'primary.main',
-        boxShadow: 0,
-        px: {
-          xs: 3,      
-          md: 10    
-        },
-        py: {
-          xs: 2,      
-          md: 4.5    
-        },
-        pb: {
-          xs: mobileOpen ? 0 : 2,
-          md: 4.5
-        },
-        transition: 'height 0.3s ease-in-out',
-        height: mobileOpen ? 'auto' : 'auto',
-        overflow: 'hidden',
-        zIndex: 8888, 
+    <Box
+      component="header"
+      sx={{
+        backgroundColor: '#0b0b0b',
+        px: 3,
+        py: 2,
+        width: '100%',
+        borderBottom: '1px solid #292929',
       }}
     >
-      <Container
-        disableGutters
-        maxWidth={false}
+      <Box
         sx={{
-          width: '100%',
-          padding: 0,
-          margin: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          maxWidth: '1400px',
+          mx: 'auto'
         }}
       >
-        <Toolbar
-          disableGutters
+        {/* Logo */}
+        <Box
           sx={{
-            justifyContent: 'space-between',
-            width: '100%',
-            padding: 0,
-            margin: 0,
-            minHeight: 'auto',
-            alignItems: 'center',
+            color: '#60a5fa',
+            fontSize: '1.25rem',
+            fontWeight: 'bold'
           }}
         >
-          {/* Logo and Company Name */}
-          <Box
-            sx={{ 
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              fontWeight: 'normal', 
-              width: 'fit-content',
-            }}
-          >
-            <Link
-            onClick={handleCloseDrawer}
-            href='/' style={{ display: 'inline-block', textDecoration: 'none' }}>
-              <Logo/>
-            </Link>
-          </Box>
+          {headerData.logo}
+        </Box>
 
-          {/* Desktop Navigation */}
-          <Box 
-            sx={{ 
-              width: 'fit-content',
-              gap: 2,
-              display: { xs: 'none', md: 'flex' },
-              alignItems: 'center', 
-              justifyContent: 'center',
-            }}
-          >
-            {navItems
-              .filter(item => item.name !== "Contact Us")
-              .map((item) => (
-                <Link 
-                  href={item.href} 
-                  key={item.name} 
-                >
-                  <Button 
-                    disableRipple={true}
-                    sx={{
-                      '&:hover': { 
-                        backgroundColor: 'transparent', 
-                        boxShadow: 'none', 
-                      },
-                    }}
-                  >
-                    <Typography 
-                      variant="body1" 
-                    >
-                      {item.name}
-                    </Typography>
-                  </Button>
-                </Link>
-              ))}
-          </Box>
+        {/* Navigation Menu */}
+        <NavigationMenu sx={{ flex: 1, maxWidth: 'none' }}>
+          <NavigationMenuList sx={{ display: 'flex', alignItems: 'center', gap: 4, ml: 6 }}>
+            {headerData.menuItems.map((item) => (
+              <NavigationMenuItem key={item.label}>
+                {item.hasDropdown ? (
+                  <>
+                    <NavigationMenuTrigger>
+                      {item.label}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <Box component="ul" sx={{ display: 'grid', width: '400px', p: 2, gap: 1 }}>
+                        {item.subItems?.map((subItem) => (
+                          <Box component="li" key={subItem.title} sx={{ listStyle: 'none' }}>
+                            <NavigationMenuContentItem href={subItem.href}>
+                              <Box
+                                component="h3"
+                                sx={{
+                                  color: 'white',
+                                  fontWeight: 500,
+                                  fontSize: '0.875rem',
+                                  margin: 0
+                                }}
+                              >
+                                {subItem.title}
+                              </Box>
+                              <Box
+                                component="span"
+                                sx={{
+                                  color: 'rgba(255,255,255,0.7)',
+                                  fontSize: '0.75rem'
+                                }}
+                              >
+                                {subItem.description}
+                              </Box>
+                            </NavigationMenuContentItem>
+                          </Box>
+                        ))}
+                      </Box>
+                    </NavigationMenuContent>
+                  </>
+                ) : (
+                  <NavigationMenuLink href={item.href}>
+                    {item.label}
+                  </NavigationMenuLink>
+                )}
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          {/* Right section - Contact and Hamburger */}
-          <Box 
-            sx={{ 
-              display: 'flex',
-              alignItems: 'center',
-              gap: 2,
-            }}
-          >
-            {/* Contact button - Only on desktop */}
-            <Link
-              href='/contact'
-              style={{
-                textDecoration: 'none'
-              }}
-            >
-              <Button 
-                variant='transparentBorder'
-                sx={{
-                  display: {
-                    xs: 'none',
-                    md: 'block'
-                  }
-                }}
-              >
-                Contact Us
-              </Button>
-            </Link>
-            
-            {/* Hamburger/Close Button - Only on mobile */}
-            <IconButton
-              aria-label="toggle menu"
-              onClick={handleDrawerToggle}
-              sx={{ 
-                display: { xs: 'block', md: 'none' },
-                color: 'primary.main',
-              }}
-            >
-              {mobileOpen ? 
-                <CloseIcon
-                  sx={{
-                    fontSize: '2.5rem'
-                  }}
-                /> : 
-                <MenuIcon 
-                  sx={{
-                    fontSize: '2.5rem'
-                  }}
-                />
-              }
-            </IconButton>
-          </Box>
-        </Toolbar>
-
-        <Collapse in={mobileOpen} timeout="auto" unmountOnExit
-        sx={{
-          maxHeight: 'calc(100vh - 80px)',
-          overflowY: 'auto',
-          '& .MuiCollapse-wrapper': {
-            maxHeight: 'inherit',
-          },
-          '& .MuiCollapse-wrapperInner': {
-            maxHeight: 'inherit',
-          },
-          '&::-webkit-scrollbar': {
-            display: 'none', /* Chrome, Safari, Opera */
-          },
-          msOverflowStyle: 'none',  /* IE and Edge */
-          scrollbarWidth: 'none',  /* Firefox */
-        }}
+        {/* Contact Us Button */}
+        <Box
+          component="button"
+          sx={{
+            backgroundColor: '#1F37E1',
+            color: 'white',
+            px: 3,
+            py: 1,
+            borderRadius: '6px',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            fontSize: '0.875rem',
+            fontWeight: 500,
+            transition: 'background-color 0.2s',
+            '&:hover': {
+              backgroundColor: '#1d4ed8'
+            }
+          }}
         >
-          <Box 
-            sx={{ 
-              textAlign: 'center', 
-              pt: 2.5,
-              pb: 0, 
-              mb: 0,
-              color: 'primary.main',
-            }}
-          >
-            <List>
-              {navItems.map((item) => (
-                <ListItem 
-                  key={item.name} 
-                  disablePadding
-                  sx={{ 
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Link href={item.href}>
-                    <Button
-                      disableRipple={true}
-                      onClick={handleDrawerToggle}
-                      sx={{ 
-                        py: 1.5,  
-                        '&:hover': {
-                          backgroundColor: 'transparent', 
-                          boxShadow: 'none', 
-                        }
-                      }}
-                    >
-                      <Typography variant='body1'>
-                        {item.name}
-                      </Typography>
-                    </Button>
-                  </Link>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        </Collapse>
-      </Container>
-    </AppBar>
+          <span>{headerData.ctaButton.text}</span>
+          <ChevronRight size={16} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

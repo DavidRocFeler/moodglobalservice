@@ -34,8 +34,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Hussaini Legal Group | International Law Firm | Miami, Amsterdam & Damascus",
-  description: "Leading international law firm providing expert legal services across Miami, Amsterdam, and Damascus. Specializing in corporate law, arbitration, investment contracting, Islamic finance, and cross-border transactions. Trusted legal counsel for global businesses and institutions.",
+  title: "Mood Global Service",
 };
 
 export default function RootLayout({

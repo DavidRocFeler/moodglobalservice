@@ -1,5 +1,5 @@
 {
-  "name": "front",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,13 +15,19 @@
     "@mui/material": "^7.3.1",
     "@mui/material-nextjs": "^7.3.0",
     "@portabletext/react": "^4.0.3",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
     "@sanity/client": "^7.11.1",
     "@sanity/image-url": "^1.2.0",
+    "clsx": "^2.1.1",
     "groq": "^4.8.1",
+    "lucide-react": "^0.544.0",
+    "motion": "^12.23.16",
     "next": "15.5.0",
     "next-sanity": "^11.1.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "tailwind-merge": "^3.3.1",
+    "tw-animate-css": "^1.3.8"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

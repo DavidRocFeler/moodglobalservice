@@ -32,6 +32,12 @@ const LegalAdviceSection = () => {
         },
       }}
     >
+      
+      <div className='w-[100%] bg-black'
+
+      >
+        Este es el Home
+      </div>
       <Box
         sx={{
           width: 'full',
