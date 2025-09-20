@@ -1,9 +1,10 @@
 // Footer Component
 import React from 'react';
 import { Box, Typography, Link, IconButton } from '@mui/material';
-import { LinkedIn, Twitter, GitHub, Instagram } from '@mui/icons-material';
+import { LinkedIn, GitHub, Instagram } from '@mui/icons-material';
 import { footerData } from '@/mock/footer.mock';
 import XIcon from './ui/XIcon';
+import { LogoSvg } from '@/assets/icons';
 
 const Footer = () => {
   const getSocialIcon = (iconName: string) => {
@@ -11,9 +12,9 @@ const Footer = () => {
       case 'linkedin':
         return <LinkedIn />;
       case 'twitter':
-        return <XIcon />; // Usamos tu icono personalizado para Twitter
+        return <XIcon />;
       case 'github':
-        return <GitHub />;
+        return <GitHub/>;
       case 'instagram':
         return <Instagram />;
       default:
@@ -43,7 +44,6 @@ const Footer = () => {
         {/* Main Footer Content */}
         <Box
           sx={{
-            
             display: 'grid',
             gridTemplateColumns: {
               xs: '1fr',
@@ -55,16 +55,7 @@ const Footer = () => {
         >
           {/* Company Info */}
           <Box>
-            <Typography
-              variant="h6"
-              sx={{
-                color: '#60a5fa',
-                fontWeight: 'bold',
-                mb: 2,
-              }}
-            >
-              {footerData.companyInfo.name}
-            </Typography>
+            <LogoSvg/>
             <Typography
               sx={{
                 color: 'rgba(255,255,255,0.8)',

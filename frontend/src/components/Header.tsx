@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,8 +9,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/NavigationMenu";
-import { ChevronRight } from 'lucide-react';
 import { headerData } from '@/mock/navbar.mock';
+import { ArrowRightSvg, IconEndLeft, IconEndRight, LogoSvg } from '@/assets/icons';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -35,13 +36,8 @@ const Header = () => {
       >
         {/* Logo */}
         <Box
-          sx={{
-            color: '#60a5fa',
-            fontSize: '1.25rem',
-            fontWeight: 'bold'
-          }}
         >
-          {headerData.logo}
+          <LogoSvg/>
         </Box>
 
         {/* Navigation Menu */}
@@ -96,30 +92,32 @@ const Header = () => {
         </NavigationMenu>
 
         {/* Contact Us Button */}
-        <Box
-          component="button"
-          sx={{
-            backgroundColor: '#1F37E1',
-            color: 'white',
-            px: 3,
-            py: 1,
-            borderRadius: '6px',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1,
-            fontSize: '0.875rem',
-            fontWeight: 500,
-            transition: 'background-color 0.2s',
-            '&:hover': {
-              backgroundColor: '#1d4ed8'
-            }
-          }}
+        <Link
+        style={{
+          display: 'flex',
+          textDecoration: 'none',
+          position: 'relative'
+        }}
+        href='/'
         >
-          <span>{headerData.ctaButton.text}</span>
-          <ChevronRight size={16} />
-        </Box>
+          <IconEndLeft/>
+          <Button
+            variant='contactUs'
+          >
+            <Typography
+            fontWeight={1000}
+            >{headerData.ctaButton.text}</Typography>
+            <ArrowRightSvg/>
+          </Button>
+          <Box 
+          sx={{
+            position: 'absolute',
+            right: '-9px'
+          }}
+          >
+            <IconEndRight/>
+          </Box>
+        </Link>
       </Box>
     </Box>
   );
