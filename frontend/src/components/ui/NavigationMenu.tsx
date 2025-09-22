@@ -1,13 +1,13 @@
-'use client' // @NOTE: Add in case you are using Next.js
+'use client' 
 
 import { useState } from 'react'
 import { Box } from '@mui/material'
+import { ChevronDown } from '@/assets/icons' 
 
 import * as RadixNavigationMenu from '@radix-ui/react-navigation-menu'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 
 type NavigationMenuProps = React.ComponentProps<typeof RadixNavigationMenu.Root>
-
 export function NavigationMenu({
   className,
   children,
@@ -16,15 +16,6 @@ export function NavigationMenu({
 }: NavigationMenuProps & { sx?: any }) {
   return (
     <Box
-      sx={{
-        position: 'relative',
-        display: 'flex',
-        maxWidth: 'max-content',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        ...sx
-      }}
     >
       <RadixNavigationMenu.Root
         data-slot="navigation-menu"
@@ -38,10 +29,12 @@ export function NavigationMenu({
   )
 }
 
+
+
+
 type NavigationMenuListProps = React.ComponentProps<
   typeof RadixNavigationMenu.List
 > & { sx?: any }
-
 export function NavigationMenuList({
   className,
   sx,
@@ -54,22 +47,23 @@ export function NavigationMenuList({
       className={className}
       sx={{
         display: 'flex',
-        flex: 1,
+        width: 'fit-content',
+        ml: -3,
         listStyle: 'none',
-        alignItems: 'center',
-        justifyContent: 'center',
+        pr: 2,
         gap: 1,
-        ...sx
       }}
       {...props}
     />
   )
 }
 
+
+
+
 type NavigationMenuItemProps = React.ComponentProps<
   typeof RadixNavigationMenu.Item
 > & { sx?: any }
-
 export function NavigationMenuItem({
   className,
   sx,
@@ -89,10 +83,12 @@ export function NavigationMenuItem({
   )
 }
 
+
+
+
 type NavigationMenuTriggerProps = React.ComponentProps<
   typeof RadixNavigationMenu.Trigger
 > & { sx?: any }
-
 export function NavigationMenuTrigger({
   className,
   children,
@@ -107,69 +103,46 @@ export function NavigationMenuTrigger({
       sx={{
         display: 'inline-flex',
         height: '36px',
+        fontFamily: "Funnel Display",
+        bgcolor: 'transparent',
         width: 'max-content',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '6px',
-        backgroundColor: 'transparent',
+        borderRadius: '12px',
         px: 2,
         py: 1,
         fontWeight: 500,
         fontSize: '0.875rem',
-        color: 'white',
+        color: '#B8B8B8',
         cursor: 'pointer',
         border: 'none',
+        gap: 1,
         outline: 'none',
         '&:hover': {
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          color: '#60a5fa'
-        },
-        '&:focus': {
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          color: '#60a5fa'
-        },
-        '&[data-state=open]': {
-          color: '#60a5fa',
-          backgroundColor: 'rgba(255,255,255,0.1)'
-        },
-        '&:disabled': {
-          pointerEvents: 'none',
-          opacity: 0.5
+          backgroundColor: '#1D1D1D',
+          color: 'white',
+          boxShadow: '0 2px 0 0 #575757',
         },
         ...sx
       }}
       {...props}
     >
-      {children}
-      <svg
-        style={{
-          position: 'relative',
-          top: '1px',
-          marginLeft: '4px',
-          width: '12px',
-          height: '12px',
-          transition: 'transform 0.2s'
-        }}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
+        {children}
+        <ChevronDown/>
     </Box>
   )
 }
 
+
+
+
 type NavigationMenuContentProps = React.ComponentProps<
   typeof RadixNavigationMenu.Content
 > & { sx?: any }
-
 export function NavigationMenuContent({
   className,
   sx,
+  children,
   ...props
 }: NavigationMenuContentProps) {
   return (
@@ -179,34 +152,34 @@ export function NavigationMenuContent({
       className={className}
       sx={{
         position: 'absolute',
-        top: '100%',
-        left: 0,
+        top: 45,
+        left: '50%',
+        transform: 'translateX(-50%)',
         zIndex: 50,
         mt: 1.5,
-        width: '100%',
         overflow: 'hidden',
-        borderRadius: '12px',
-        border: '1px solid rgba(255,255,255,0.1)',
-        backgroundColor: '#2d3748',
-        p: 2.5,
+        borderBottomLeftRadius: '12px',
+        borderBottomRightRadius: '12px',
+        border: '6px solid #1D1D1D',
+        backgroundColor: '#0B0B0B',
+        p: 0, 
         color: 'white',
-        boxShadow: '0 10px 25px rgba(0,0,0,0.3)',
-        '@media (min-width: 768px)': {
-          left: '50%',
-          width: 'auto',
-          transform: 'translateX(-50%)'
-        },
+        width: '40rem',
         ...sx
       }}
       {...props}
-    />
+    >
+        {children}
+    </Box>
   )
 }
+
+
+
 
 type NavigationMenuContentItemProps = React.ComponentProps<
   typeof RadixNavigationMenu.Link
 > & { sx?: any }
-
 export function NavigationMenuContentItem({
   children,
   className,
@@ -231,6 +204,7 @@ export function NavigationMenuContentItem({
       sx={{
         position: 'relative',
         borderRadius: '8px',
+        bgcolor: 'green',
         p: 2,
         outline: 'none',
         display: 'block',
@@ -238,7 +212,6 @@ export function NavigationMenuContentItem({
         color: 'inherit',
         ...(isReducedMotion && {
           '&:hover': {
-            backgroundColor: 'rgba(255,255,255,0.1)'
           }
         }),
         ...sx
@@ -276,10 +249,12 @@ export function NavigationMenuContentItem({
   )
 }
 
+
+
+// home, blog
 type NavigationMenuLinkProps = React.ComponentProps<
   typeof RadixNavigationMenu.Link
 > & { sx?: any }
-
 export function NavigationMenuLink({
   className,
   sx,
@@ -291,30 +266,24 @@ export function NavigationMenuLink({
       data-slot="navigation-menu-link"
       className={className}
       sx={{
+        fontFamily: "Funnel Display",
         display: 'flex',
         height: '36px',
         alignItems: 'center',
         gap: 1,
-        borderRadius: '6px',
+        color: '#B8B8B8',
+        borderRadius: '12px',
         px: 2,
         py: 1,
         fontWeight: 500,
         fontSize: '0.875rem',
         outline: 'none',
         transition: 'all 0.2s',
-        color: 'white',
         textDecoration: 'none',
         '&:hover': {
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          color: '#60a5fa'
-        },
-        '&:focus': {
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          color: '#60a5fa'
-        },
-        '&[data-active=true]': {
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          color: '#60a5fa'
+          backgroundColor: '#1D1D1D',
+          boxShadow: '0 2px 0 0 #575757',
+          color: 'white'
         },
         ...sx
       }}

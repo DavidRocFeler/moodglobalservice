@@ -2,46 +2,21 @@
 import { ThemeOptions } from '@mui/material/styles';
 
 export const typography: ThemeOptions['typography'] = {
-  fontFamily: 'var(--font-inter), var(--font-roboto), "Helvetica", "Arial", sans-serif',
 
   h1: {
-    fontFamily: 'var(--font-merriweather), serif',
-    color: '#FAF5EF',
+    color: '#B8B8B8',
+    fontFamily: "Funnel Display",
+    fontSize: '1.75rem',
+    fontStyle: 'normal',
     fontWeight: 400,
-    letterSpacing: '-0.1rem',
-    fontSize: '5rem', 
-    lineHeight: '5.6rem',
-    
-    '@media (max-width:899px)': { 
-      fontSize: '3.125rem',
-      lineHeight: '3.5rem',
-      letterSpacing: '-0.0625rem',
-    },
-    
-    '@media (max-width:450px)': { 
-      fontSize: '2.5rem',
-      lineHeight: '2.8rem',
-      letterSpacing: '-0.05rem',
+    lineHeight: 'normal',
+    '&:hover': {
+      color: 'white'
     },
   },
 
   h2: {
-    fontFamily: 'var(--font-exo), sans-serif',
-    color: '#FFF',
-    fontWeight: 400,
-    letterSpacing: '-0.01rem',
-    fontSize: '1.125rem', 
-    lineHeight: '1.8rem',
     
-    '@media (max-width:899px)': { 
-      fontSize: '1.125rem',
-      lineHeight: '1.8rem',
-    },
-    
-    '@media (max-width:450px)': {
-      fontSize: '1rem',
-      lineHeight: '1.6rem',
-    },
   },
 
   h3: {
@@ -140,23 +115,13 @@ export const typography: ThemeOptions['typography'] = {
   },
 
   h9: {
-    color: '#131313',
-    fontFamily: 'var(--font-merriweather), serif',
+    color: '#FFF',
+    /* H9 */
+    fontFamily: "Funnel Display",
+    fontSize: '1.3rem',
     fontStyle: 'normal',
-    fontWeight: 400,
-    letterSpacing: '-0.01rem',
-    fontSize: '2.75rem',
-    lineHeight: '3.08rem',
-    
-    '@media (max-width:899px)': {
-      fontSize: '2.5rem',
-      lineHeight: '2.8rem', 
-    },
-    
-    '@media (max-width:450px)': {
-      fontSize: '2.1875rem',
-      lineHeight: '2.45rem', 
-    },
+    fontWeight: 500,
+    lineHeight: 'normal',
   },
 
   h10: {
@@ -168,73 +133,30 @@ export const typography: ThemeOptions['typography'] = {
   },
 
   h12: {
-    color: '#131313',
-    fontFamily: 'var(--font-merriweather), serif',
-    fontStyle: 'normal',
-    fontWeight: 700,
-    fontSize: '3.5rem',
-    lineHeight: '4.2rem',
-    letterSpacing: '-0.07rem',
-    
-    '@media (max-width:899px)': {
-      fontSize: '2.5rem',
-      lineHeight: '3rem',
-      letterSpacing: '-0.05rem',
-    },
-    
-    '@media (max-width:450px)': {
-      fontSize: '2.5rem',
-      lineHeight: '3rem',
-      letterSpacing: '-0.05rem',
-    },
   },
 
   h13: {
-    color: '#FAF5EF',
-    fontFamily: 'Merriweather, serif',
-    fontStyle: 'normal',
-    fontWeight: 400,
-    fontSize: '5rem',
-    lineHeight: '5.6rem',
-    letterSpacing: '-0.1rem',
-    
-    '@media (max-width:899px)': {
-      fontSize: '3.125rem',
-      lineHeight: '3.5rem',
-      letterSpacing: '-0.0625rem',
-    },
-    
-    '@media (max-width:450px)': {
-      fontSize: '2.5rem',
-      lineHeight: '2.8rem',
-      letterSpacing: '-0.05rem',
-    },
+  
   },
 
   body1: {
-    fontFamily: 'var(--font-merriweather), serif',
-    color: '#EEE9DD',
-    fontSize: '1rem',
-    fontWeight: 400,
-    lineHeight: '1.3rem', 
-    letterSpacing: '-0.01rem',
-    textTransform: 'none',
-    '&:hover': { 
-      color: 'white',
-    },
+    // color: '#FFF',
+    // /* Body 1 Light */
+    // fontFamily: "Funnel Display",
+    // fontSize: '2.25rem',
+    // fontStyle: 'normal',
+    // fontWeight: '300',
+    // lineHeight: 'normal',
   },
   
   body2: {
-    color: '#FFF',
-    fontFamily: 'var(--font-inter), sans-serif',
+    color: 'rgba(255, 255, 255, 0.69)',
+
+    /* Body 2 Refular */
+    fontFamily: "Funnel Display",
     fontSize: '1rem',
     fontStyle: 'normal',
-    fontWeight: 400,
-    lineHeight: '1.3rem',
-    letterSpacing: '-0.01rem',
-    textAlign: 'left',
-    '@media (max-width:899px)': { 
-      textAlign: 'center',
-    },
+    fontWeight: 200,
+    lineHeight: 'normal',
   },
 };

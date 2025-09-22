@@ -16,11 +16,15 @@ import Link from 'next/link';
 const Header = () => {
   return (
     <Box
-      component="header"
+      pl={20}
+      pr={10}
+      py={0}
       sx={{
+        bgcolor: 'red',
         backgroundColor: '#0b0b0b',
-        px: 3,
-        py: 2,
+        display: 'flex',
+        height: '4.9375rem',
+        alignItems: 'center',
         width: '100%',
         borderBottom: '1px solid #292929',
       }}
@@ -30,7 +34,7 @@ const Header = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          maxWidth: '1400px',
+          width: '100%',
           mx: 'auto'
         }}
       >
@@ -95,28 +99,34 @@ const Header = () => {
         <Link
         style={{
           display: 'flex',
+          flexDirection: 'row',
           textDecoration: 'none',
-          position: 'relative'
+          gap: 0
         }}
         href='/'
         >
-          <IconEndLeft/>
+          <Box
+            sx={{
+               marginRight: '-1px'
+            }}
+          >
+            <IconEndLeft/>
+          </Box>
+          
           <Button
             variant='contactUs'
+
           >
             <Typography
-            fontWeight={1000}
+            sx={{
+              fontFamily: "Funnel Display",
+              fontWeight: 600,
+              letterSpacing: '0.0625rem'
+            }}
             >{headerData.ctaButton.text}</Typography>
             <ArrowRightSvg/>
           </Button>
-          <Box 
-          sx={{
-            position: 'absolute',
-            right: '-9px'
-          }}
-          >
-            <IconEndRight/>
-          </Box>
+          <IconEndRight/>
         </Link>
       </Box>
     </Box>

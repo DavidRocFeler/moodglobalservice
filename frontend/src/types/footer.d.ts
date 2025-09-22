@@ -53,3 +53,20 @@ export interface FooterSection {
   items: string[];
   isActive: boolean;
 }
+
+export interface IFooterNavigation {
+  id: number;
+  title: string;
+  home?: string;
+  services?: string;
+  siteLab?: string;
+  blockAI?: string;
+  about?: string;
+  privacyPolicy?: string;
+  termsAndConditions?: string;
+  cookiePolicy?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  kvk?: string;
+}

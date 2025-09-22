@@ -9,19 +9,17 @@ export const components: Components<Theme> = {
         style: {
           // Colores base
           backgroundColor: '#1F37E1',
-          
+          width: '10rem',
           // Tipografía
           color: '#FFF',
           leadingTrim: 'both',
           textEdge: 'cap',
-          fontFamily: "Funnel Display",
           fontSize: '1.0625rem',
           fontStyle: 'normal',
           lineHeight: '1.5rem', /* 1.59375rem */
           letterSpacing: '0.03125rem',
           
           // Dimensiones y espaciado
-          minWidth: 'auto',
           height: '2.3125rem',
           
           // Reset de estilos del button
@@ -32,14 +30,15 @@ export const components: Components<Theme> = {
           // Layout interno
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
+          justifyContent: 'space-evenly',
           flexDirection: 'row',
-          justifyContent: 'space-betwen',
           
           // Posicionamiento para el efecto pixel
           position: 'relative',
+          paddingLeft: 10,
+          paddingRight: 3,
           
-          boxShadow: '0 3px 0 0 #142E43'
+          boxShadow: '0 3px 0 0 #142E43',
         }
       }
       

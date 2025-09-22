@@ -1,210 +1,277 @@
 // Footer Component
 import React from 'react';
-import { Box, Typography, Link, IconButton } from '@mui/material';
+import { Box, Typography, Link, IconButton, Grid } from '@mui/material';
 import { LinkedIn, GitHub, Instagram } from '@mui/icons-material';
 import { footerData } from '@/mock/footer.mock';
-import XIcon from './ui/XIcon';
 import { LogoSvg } from '@/assets/icons';
+import IconSocialMedia from './ui/IconSocialMedia';
+import { footerNavigation } from '@/mock/footerNavigation.mock';
 
 const Footer = () => {
-  const getSocialIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'linkedin':
-        return <LinkedIn />;
-      case 'twitter':
-        return <XIcon />;
-      case 'github':
-        return <GitHub/>;
-      case 'instagram':
-        return <Instagram />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <Box
       component="footer"
       sx={{
-        borderTop: '1px solid #292929',
+        borderTop: '1px solid #262626',
         backgroundColor: '#0b0b0b',
         color: 'white',
-        pt: 6,
-        pb: 4,
+        pt: 11,
         mt: 'auto'
       }}
     >
       <Box
         sx={{
-          maxWidth: '1400px',
           mx: 'auto',
-          px: 3
+          px: 8,
         }}
       >
         {/* Main Footer Content */}
         <Box
           sx={{
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: '1fr',
-              md: '2fr 1fr 1fr 1.5fr'
-            },
+            bgcolor: 'pink',
+            display: 'flex',
+            flexDirection: 'row',
             gap: 4,
-            mb: 15,
+            mb: 20,
           }}
         >
           {/* Company Info */}
-          <Box>
-            <LogoSvg/>
+          <Box 
+          sx={{
+            bgcolor: 'red',
+            width: '30%'
+          }}
+          >
+            <Box mb={3}>
+              <LogoSvg/>
+            </Box>
             <Typography
-              sx={{
-                color: 'rgba(255,255,255,0.8)',
-                fontSize: '0.875rem',
-                lineHeight: 1.6,
-                mb: 3
-              }}
+            variant='h9'
+            >
+              Mood Global Service B.V.
+            </Typography>
+            <Typography
+            mb={4}
+            mt={1}
+            variant='body2'
             >
               {footerData.companyInfo.description}
             </Typography>
             
             {/* Social Links */}
-            <Box sx={{ display: 'flex', gap: 1 }}>
-            {footerData.socialLinks.map((social) => (
-            <IconButton
-                key={social.name}
-                href={social.href}
-                sx={{
-                  color: 'rgba(255,255,255,0.6)',
-                  backgroundColor: 'rgba(255,255,255,0.1)',
-                  width: 36,
-                  height: 36,
-                  '&:hover': {
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    color: 'white'
-                  }
-                }}
-              >
-                {getSocialIcon(social.icon)}
-              </IconButton>
-            ))}
-            </Box>
+            <IconSocialMedia/>
           </Box>
 
-          {/* Navigation Links */}
-          {footerData.sections.map((section) => (
-            <Box key={section.title}>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: 'white',
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  mb: 2
-                }}
-              >
-                {section.title}
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                {section.links.map((link) => (
-                  <Link
-                    key={link.title}
-                    href={link.href}
-                    sx={{
-                      color: 'rgba(255,255,255,0.7)',
-                      fontSize: '0.875rem',
-                      textDecoration: 'none',
-                      '&:hover': {
-                        color: '#60a5fa',
-                        textDecoration: 'none'
-                      }
-                    }}
-                  >
-                    {link.title}
-                  </Link>
+          <Grid
+          gap={16}
+          sx={{
+            ml: 'auto',
+            bgcolor: 'green',
+            display: 'flex',
+            width: '55%',
+            flexDirection: 'row',
+          }}
+          >
+            {/* Navigation */}
+            <Box sx={{ bgcolor: 'blue' }}>
+              {footerNavigation
+                .filter(section => section.id === 1)
+                .map(section => (
+                  <Box key={section.id}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: 'white',
+                        fontWeight: 600,
+                        fontSize: '1rem',
+                        mb: 2
+                      }}
+                    >
+                      {section.title}
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      {section.home && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem',
+                            lineHeight: 1.5
+                          }}
+                        >
+                          {section.home}
+                        </Typography>
+                      )}
+                      {section.services && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem'
+                          }}
+                        >
+                          {section.services}
+                        </Typography>
+                      )}
+                      {section.siteLab && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem'
+                          }}
+                        >
+                          {section.siteLab}
+                        </Typography>
+                      )}
+                      {section.blockAI && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem'
+                          }}
+                        >
+                          {section.blockAI}
+                        </Typography>
+                      )}
+                      {section.about && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem'
+                          }}
+                        >
+                          {section.about}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Box>
                 ))}
-              </Box>
             </Box>
-          ))}
 
-          {/* Contact Info */}
-          <Box>
-            <Typography
-              variant="h6"
-              sx={{
-                color: 'white',
-                fontWeight: 600,
-                fontSize: '1rem',
-                mb: 2
-              }}
-            >
-              Contact
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Typography
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  lineHeight: 1.5
-                }}
-              >
-                {footerData.contact.address}
-              </Typography>
-              <Typography
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem'
-                }}
-              >
-                {footerData.contact.city}
-              </Typography>
-              <Link
-                href={`mailto:${footerData.contact.email}`}
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    color: '#60a5fa'
-                  }
-                }}
-              >
-                {footerData.contact.email}
-              </Link>
-              <Typography
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  mt: 1
-                }}
-              >
-                {footerData.contact.kvk}
-              </Typography>
-              <Link
-                href={`tel:${footerData.contact.phone}`}
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    color: '#60a5fa'
-                  }
-                }}
-              >
-                {footerData.contact.phone}
-              </Link>
+            {/* Legal */}
+            <Box sx={{ bgcolor: 'blue' }}>
+              {footerNavigation
+                .filter(section => section.id === 2)
+                .map(section => (
+                  <Box key={section.id}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: 'white',
+                        fontWeight: 600,
+                        fontSize: '1rem',
+                        mb: 2
+                      }}
+                    >
+                      {section.title}
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      {section.privacyPolicy && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem',
+                            lineHeight: 1.5
+                          }}
+                        >
+                          {section.privacyPolicy}
+                        </Typography>
+                      )}
+                      {section.termsAndConditions && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem'
+                          }}
+                        >
+                          {section.termsAndConditions}
+                        </Typography>
+                      )}
+                      {section.cookiePolicy && (
+                        <Typography
+                          sx={{
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '0.875rem'
+                          }}
+                        >
+                          {section.cookiePolicy}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Box>
+                ))}
             </Box>
-          </Box>
+
+            {/* Contact */}
+            <Box sx={{ 
+              bgcolor: 'blue',
+              width: 'fit-content' 
+              }}>
+              {footerNavigation
+                .filter(section => section.id === 3)
+                .map(section => (
+                  <div key={section.id}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: 'white',
+                        fontWeight: 600,
+                        fontSize: '1rem',
+                        mb: 2
+                      }}
+                    >
+                      {section.title}
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      {section.address && (
+                        <Typography
+                        sx={{
+                          width: '15rem',
+                        }}
+                        >
+                          {section.address}
+                        </Typography>
+                      )}
+                      {section.email && (
+                        <Link
+                          href={`mailto:${section.email}`}
+                        >
+                          {section.email}
+                        </Link>
+                      )}
+                      {section.kvk && (
+                        <Typography
+                        >
+                          {section.kvk}
+                        </Typography>
+                      )}
+                      {section.phone && (
+                        <Link
+                          href={`tel:${section.phone}`}
+                        >
+                          {section.phone}
+                        </Link>
+                      )}
+                    </Box>
+                  </div>
+                ))}
+            </Box>
+
+          </Grid>
         </Box>
 
+      </Box>
         {/* Copyright */}
         <Box
+          py={3}
           sx={{
-            borderTop: '1px solid #292929',
-            pt: 3,
+            borderTop: '1px solid #262626',
+            display: 'flex',
+            width: 'full',
             textAlign: 'left'
           }}
         >
           <Typography
+            ml={5}
             sx={{
               color: 'rgba(255,255,255,0.6)',
               fontSize: '0.75rem'
@@ -213,7 +280,6 @@ const Footer = () => {
             {footerData.copyright}
           </Typography>
         </Box>
-      </Box>
     </Box>
   );
 };
