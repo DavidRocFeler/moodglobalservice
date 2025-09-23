@@ -1,227 +1,173 @@
 // Footer Component
 import React from 'react';
-import { Box, Typography, Link, IconButton } from '@mui/material';
-import { LinkedIn, Twitter, GitHub, Instagram } from '@mui/icons-material';
-import { footerData } from '@/mock/footer.mock';
-import XIcon from './ui/XIcon';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import { LogoSvg } from '@/assets/icons';
+import IconSocialMedia from './ui/IconSocialMedia';
+import { footerNavigation } from '@/mock/footerNavigation.mock';
 
 const Footer = () => {
-  const getSocialIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'linkedin':
-        return <LinkedIn />;
-      case 'twitter':
-        return <XIcon />; // Usamos tu icono personalizado para Twitter
-      case 'github':
-        return <GitHub />;
-      case 'instagram':
-        return <Instagram />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <Box
       component="footer"
-      sx={{
-        borderTop: '1px solid #292929',
-        backgroundColor: '#0b0b0b',
-        color: 'white',
-        pt: 6,
-        pb: 4,
-        mt: 'auto'
-      }}
+      mt="auto"
+      pt={11}
+      borderTop="1px solid #262626"
+      bgcolor="primary.main"
+      color="white"
     >
-      <Box
-        sx={{
-          maxWidth: '1400px',
-          mx: 'auto',
-          px: 3
-        }}
-      >
+      <Box mx="auto" px={8}>
         {/* Main Footer Content */}
-        <Box
-          sx={{
-            
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: '1fr',
-              md: '2fr 1fr 1fr 1.5fr'
-            },
-            gap: 4,
-            mb: 15,
-          }}
-        >
+        <Box display="flex" flexDirection="row" gap={4} mb={20}>
           {/* Company Info */}
-          <Box>
-            <Typography
-              variant="h6"
-              sx={{
-                color: '#60a5fa',
-                fontWeight: 'bold',
-                mb: 2,
-              }}
-            >
-              {footerData.companyInfo.name}
-            </Typography>
-            <Typography
-              sx={{
-                color: 'rgba(255,255,255,0.8)',
-                fontSize: '0.875rem',
-                lineHeight: 1.6,
-                mb: 3
-              }}
-            >
-              {footerData.companyInfo.description}
-            </Typography>
+          <Box width="30%">
+            <Box mb={3}>
+              <LogoSvg />
+            </Box>
+            {footerNavigation
+              .filter(section => section.id === 1)
+              .map(section => (
+                <Box key={section.id}>
+                  <Typography variant="h9">
+                    {section.title}
+                  </Typography>
+                  <Typography variant="body2" mt={1} mb={4}>
+                    {section.blockchainFirm}
+                  </Typography>
+                </Box>
+              ))}
             
             {/* Social Links */}
-            <Box sx={{ display: 'flex', gap: 1 }}>
-            {footerData.socialLinks.map((social) => (
-            <IconButton
-                key={social.name}
-                href={social.href}
-                sx={{
-                  color: 'rgba(255,255,255,0.6)',
-                  backgroundColor: 'rgba(255,255,255,0.1)',
-                  width: 36,
-                  height: 36,
-                  '&:hover': {
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    color: 'white'
-                  }
-                }}
-              >
-                {getSocialIcon(social.icon)}
-              </IconButton>
-            ))}
-            </Box>
+            <IconSocialMedia />
           </Box>
 
-          {/* Navigation Links */}
-          {footerData.sections.map((section) => (
-            <Box key={section.title}>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: 'white',
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  mb: 2
-                }}
-              >
-                {section.title}
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                {section.links.map((link) => (
-                  <Link
-                    key={link.title}
-                    href={link.href}
-                    sx={{
-                      color: 'rgba(255,255,255,0.7)',
-                      fontSize: '0.875rem',
-                      textDecoration: 'none',
-                      '&:hover': {
-                        color: '#60a5fa',
-                        textDecoration: 'none'
-                      }
-                    }}
-                  >
-                    {link.title}
-                  </Link>
-                ))}
-              </Box>
-            </Box>
-          ))}
-
-          {/* Contact Info */}
-          <Box>
-            <Typography
-              variant="h6"
-              sx={{
-                color: 'white',
-                fontWeight: 600,
-                fontSize: '1rem',
-                mb: 2
-              }}
-            >
-              Contact
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Typography
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  lineHeight: 1.5
-                }}
-              >
-                {footerData.contact.address}
-              </Typography>
-              <Typography
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem'
-                }}
-              >
-                {footerData.contact.city}
-              </Typography>
-              <Link
-                href={`mailto:${footerData.contact.email}`}
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    color: '#60a5fa'
-                  }
-                }}
-              >
-                {footerData.contact.email}
-              </Link>
-              <Typography
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  mt: 1
-                }}
-              >
-                {footerData.contact.kvk}
-              </Typography>
-              <Link
-                href={`tel:${footerData.contact.phone}`}
-                sx={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: '0.875rem',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    color: '#60a5fa'
-                  }
-                }}
-              >
-                {footerData.contact.phone}
-              </Link>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Copyright */}
-        <Box
-          sx={{
-            borderTop: '1px solid #292929',
-            pt: 3,
-            textAlign: 'left'
-          }}
-        >
-          <Typography
-            sx={{
-              color: 'rgba(255,255,255,0.6)',
-              fontSize: '0.75rem'
-            }}
+          <Grid 
+            container 
+            gap={16} 
+            ml="auto" 
+            width="55%"
+            flexDirection="row"
           >
-            {footerData.copyright}
-          </Typography>
+            {/* Navigation */}
+            <Box pt={1}>
+              {footerNavigation
+                .filter(section => section.id === 2)
+                .map(section => (
+                  <Box key={section.id}>
+                    <Typography variant="body1" mb={3}>
+                      {section.title}
+                    </Typography>
+                    <Box display="flex" flexDirection="column" gap={1}>
+                      {section.home && (
+                        <Typography variant="body3" mb={2}>
+                          {section.home}
+                        </Typography>
+                      )}
+                      {section.services && (
+                        <Typography variant="body3" mb={2}>
+                          {section.services}
+                        </Typography>
+                      )}
+                      {section.siteLab && (
+                        <Typography variant="body3" mb={2}>
+                          {section.siteLab}
+                        </Typography>
+                      )}
+                      {section.blockAI && (
+                        <Typography variant="body3" mb={2}>
+                          {section.blockAI}
+                        </Typography>
+                      )}
+                      {section.about && (
+                        <Typography variant="body3" mb={2}>
+                          {section.about}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Box>
+                ))}
+            </Box>
+
+            {/* Legal */}
+            <Box pt={1}>
+              {footerNavigation
+                .filter(section => section.id === 3)
+                .map(section => (
+                  <Box key={section.id}>
+                    <Typography variant="body1" mb={3}>
+                      {section.title}
+                    </Typography>
+                    <Box display="flex" flexDirection="column" gap={1}>
+                      {section.privacyPolicy && (
+                        <Typography variant="body3" mb={2}>
+                          {section.privacyPolicy}
+                        </Typography>
+                      )}
+                      {section.termsAndConditions && (
+                        <Typography variant="body3" mb={2}>
+                          {section.termsAndConditions}
+                        </Typography>
+                      )}
+                      {section.cookiePolicy && (
+                        <Typography variant="body3" mb={2}>
+                          {section.cookiePolicy}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Box>
+                ))}
+            </Box>
+
+            {/* Contact */}
+            <Box pt={1} width="fit-content">
+              {footerNavigation
+                .filter(section => section.id === 4)
+                .map(section => (
+                  <Box key={section.id}>
+                    <Typography variant="body1" mb={3}>
+                      {section.title}
+                    </Typography>
+                    <Box display="flex" flexDirection="column" gap={1}>
+                      {section.address && (
+                        <Typography variant="body3" mb={2} width="15rem">
+                          {section.address}
+                        </Typography>
+                      )}
+                      {section.email && (
+                        <Typography variant="body3" mb={2}>
+                          {section.email}
+                        </Typography>
+                      )}
+                      {section.kvk && (
+                        <Typography variant="body3" mb={2}>
+                          {section.kvk}
+                        </Typography>
+                      )}
+                      {section.phone && (
+                        <Typography variant="body3" mb={2}>
+                          {section.phone}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Box>
+                ))}
+            </Box>
+          </Grid>
         </Box>
+      </Box>
+
+      {/* Copyright */}
+      <Box 
+        py={3} 
+        borderTop="1px solid #262626" 
+        display="flex" 
+        width="full" 
+        textAlign="left"
+      >
+        <Typography variant="body3" ml={5}>
+          © 2024 Mood Global Services B.V. All rights reserved.
+        </Typography>
       </Box>
     </Box>
   );

@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ClientLayout from "./ClientLayout";
+import { Funnel_Display } from "next/font/google"; 
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,6 +34,13 @@ const roboto = Roboto({
   display: 'swap',
 });
 
+const funnelDisplay = Funnel_Display({
+  variable: "--font-funnel-display",
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: "Mood Global Service",
 };
@@ -44,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${merriweather.variable} ${exo.variable} ${roboto.variable}`}>
+      <body className={`${inter.variable} ${merriweather.variable} ${exo.variable} ${roboto.variable} ${funnelDisplay.variable}`}>
         <ClientLayout>
           <Header />
           <Box

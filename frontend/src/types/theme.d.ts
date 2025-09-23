@@ -10,6 +10,7 @@ declare module '@mui/material/styles' {
     h11?: React.CSSProperties;
     h12?: React.CSSProperties;
     h13?: React.CSSProperties;
+    body3?: React.CSSProperties;
   }
   
   interface BreakpointOverrides {
@@ -18,20 +19,6 @@ declare module '@mui/material/styles' {
     md: true;
     lg: true;
     xl: true;
-    
-    customMobileInsight: true;          
-    mobileMid: true;     
-
-    customEarthTablet: true;         
-    customTimelineMobile: true;       
-    customTabletAbout: true;         
-    customDesktopCardAbout: true;   
-
-    desktopMid: true;                
-    customDesktopLargeAbout: true;    
-    customLargeCardAbout: true;      
-    customXLargeCardAbout: true; 
-    customEarthDesktop: true;    
   }
 }
 
@@ -44,6 +31,7 @@ declare module '@mui/material/Typography' {
     h11: true;
     h12: true;
     h13: true;
+    body3: true;
   }
 }
 
@@ -57,14 +45,6 @@ declare module 'react' {
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
-    seeMoreButton: true;
-    redCahova: true;
-    redCahovaBorder: true;
-    goldenOchre: true;
-    transparentBorder: true;
-    buttonReadCase: true;
     contactUs: true;
-    buttonSubscribe: true;
-    primary: true;
   }
 }

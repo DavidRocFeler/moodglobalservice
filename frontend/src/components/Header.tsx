@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,39 +11,33 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/NavigationMenu";
-import { ChevronRight } from 'lucide-react';
 import { headerData } from '@/mock/navbar.mock';
+import { ArrowRightSvg, IconEndLeft, IconEndRight, LogoSvg } from '@/assets/icons';
+import Link from 'next/link';
 
 const Header = () => {
   return (
     <Box
-      component="header"
-      sx={{
-        backgroundColor: '#0b0b0b',
-        px: 3,
-        py: 2,
-        width: '100%',
-        borderBottom: '1px solid #292929',
-      }}
+      pl={20}
+      pr={10}
+      py={0}
+      bgcolor="primary.main"
+      display="flex"
+      height="4.9375rem"
+      alignItems="center"
+      width="100%"
+      borderBottom="1px solid #292929"
     >
       <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          maxWidth: '1400px',
-          mx: 'auto'
-        }}
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        width="100%"
+        mx="auto"
       >
         {/* Logo */}
-        <Box
-          sx={{
-            color: '#60a5fa',
-            fontSize: '1.25rem',
-            fontWeight: 'bold'
-          }}
-        >
-          {headerData.logo}
+        <Box>
+          <LogoSvg/>
         </Box>
 
         {/* Navigation Menu */}
@@ -55,27 +51,21 @@ const Header = () => {
                       {item.label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <Box component="ul" sx={{ display: 'grid', width: '400px', p: 2, gap: 1 }}>
+                      <Box component="ul" display="grid" width="400px" p={2} gap={1}>
                         {item.subItems?.map((subItem) => (
                           <Box component="li" key={subItem.title} sx={{ listStyle: 'none' }}>
                             <NavigationMenuContentItem href={subItem.href}>
                               <Box
-                                component="h3"
-                                sx={{
-                                  color: 'white',
-                                  fontWeight: 500,
-                                  fontSize: '0.875rem',
-                                  margin: 0
-                                }}
+                                color="white"
+                                fontWeight={500}
+                                fontSize="0.875rem"
+                                margin={0}
                               >
                                 {subItem.title}
                               </Box>
                               <Box
-                                component="span"
-                                sx={{
-                                  color: 'rgba(255,255,255,0.7)',
-                                  fontSize: '0.75rem'
-                                }}
+                                color="rgba(255,255,255,0.7)"
+                                fontSize="0.75rem"
                               >
                                 {subItem.description}
                               </Box>
@@ -96,30 +86,32 @@ const Header = () => {
         </NavigationMenu>
 
         {/* Contact Us Button */}
-        <Box
-          component="button"
-          sx={{
-            backgroundColor: '#1F37E1',
-            color: 'white',
-            px: 3,
-            py: 1,
-            borderRadius: '6px',
-            border: 'none',
-            cursor: 'pointer',
+        <Link
+          href='/'
+          style={{
             display: 'flex',
-            alignItems: 'center',
-            gap: 1,
-            fontSize: '0.875rem',
-            fontWeight: 500,
-            transition: 'background-color 0.2s',
-            '&:hover': {
-              backgroundColor: '#1d4ed8'
-            }
+            flexDirection: 'row',
+            textDecoration: 'none',
+            gap: 0
           }}
         >
-          <span>{headerData.ctaButton.text}</span>
-          <ChevronRight size={16} />
-        </Box>
+          <Box marginRight="-1px">
+            <IconEndLeft/>
+          </Box>
+          
+          <Button variant="contactUs">
+            <Typography
+              fontFamily="Funnel Display"
+              fontWeight={600}
+              letterSpacing="0.0625rem"
+            >
+              {headerData.ctaButton.text}
+            </Typography>
+            
+            <ArrowRightSvg/>
+          </Button> 
+          <IconEndRight/>
+        </Link>
       </Box>
     </Box>
   );

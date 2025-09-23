@@ -28,6 +28,7 @@ export interface SubItem {
         href: "/",
         hasDropdown: false,
       },
+
       {
         label: "Services",
         hasDropdown: true,
@@ -54,8 +55,9 @@ export interface SubItem {
           }
         ]
       },
+
       {
-        label: "SiteLib",
+        label: "Products",
         hasDropdown: true,
         subItems: [
           {
@@ -80,37 +82,13 @@ export interface SubItem {
           }
         ]
       },
-      {
-        label: "BlockAI",
-        hasDropdown: true,
-        subItems: [
-          {
-            title: "AI Models",
-            description: "Pre-trained artificial intelligence models",
-            href: "/blockai/models"
-          },
-          {
-            title: "API Access",
-            description: "Integrate AI into your applications",
-            href: "/blockai/api"
-          },
-          {
-            title: "Training",
-            description: "Custom model training services",
-            href: "/blockai/training"
-          },
-          {
-            title: "Analytics",
-            description: "AI-powered data analytics",
-            href: "/blockai/analytics"
-          }
-        ]
-      },
+
       {
         label: "Blog",
         href: "/blog",
         hasDropdown: false,
       },
+
       {
         label: "About us",
         hasDropdown: true,
@@ -138,6 +116,7 @@ export interface SubItem {
         ]
       }
     ],
+    
     ctaButton: {
       text: "Contact Us",
       href: "/contact"
