@@ -56,6 +56,7 @@ export interface FooterSection {
 
 export interface IFooterNavigation {
   id: number;
+  blockchainFirm?: string;
   title: string;
   home?: string;
   services?: string;

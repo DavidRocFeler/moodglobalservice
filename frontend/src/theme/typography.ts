@@ -159,4 +159,15 @@ export const typography: ThemeOptions['typography'] = {
     fontWeight: 200,
     lineHeight: 'normal',
   },
+
+  body3: {
+    color: '#7E7E7E',
+
+    /* Body 3 Light */
+    fontFamily: "Funnel Display",
+    fontSize: '0.9rem',
+    fontStyle: 'normal',
+    fontWeight: 300,
+    lineHeight: 'normal',
+  }
 };

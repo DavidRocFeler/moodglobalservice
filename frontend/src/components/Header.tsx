@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,28 +21,22 @@ const Header = () => {
       pl={20}
       pr={10}
       py={0}
-      sx={{
-        bgcolor: 'red',
-        backgroundColor: '#0b0b0b',
-        display: 'flex',
-        height: '4.9375rem',
-        alignItems: 'center',
-        width: '100%',
-        borderBottom: '1px solid #292929',
-      }}
+      bgcolor="primary.main"
+      display="flex"
+      height="4.9375rem"
+      alignItems="center"
+      width="100%"
+      borderBottom="1px solid #292929"
     >
       <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          mx: 'auto'
-        }}
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        width="100%"
+        mx="auto"
       >
         {/* Logo */}
-        <Box
-        >
+        <Box>
           <LogoSvg/>
         </Box>
 
@@ -55,27 +51,21 @@ const Header = () => {
                       {item.label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <Box component="ul" sx={{ display: 'grid', width: '400px', p: 2, gap: 1 }}>
+                      <Box component="ul" display="grid" width="400px" p={2} gap={1}>
                         {item.subItems?.map((subItem) => (
                           <Box component="li" key={subItem.title} sx={{ listStyle: 'none' }}>
                             <NavigationMenuContentItem href={subItem.href}>
                               <Box
-                                component="h3"
-                                sx={{
-                                  color: 'white',
-                                  fontWeight: 500,
-                                  fontSize: '0.875rem',
-                                  margin: 0
-                                }}
+                                color="white"
+                                fontWeight={500}
+                                fontSize="0.875rem"
+                                margin={0}
                               >
                                 {subItem.title}
                               </Box>
                               <Box
-                                component="span"
-                                sx={{
-                                  color: 'rgba(255,255,255,0.7)',
-                                  fontSize: '0.75rem'
-                                }}
+                                color="rgba(255,255,255,0.7)"
+                                fontSize="0.75rem"
                               >
                                 {subItem.description}
                               </Box>
@@ -97,35 +87,29 @@ const Header = () => {
 
         {/* Contact Us Button */}
         <Link
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          textDecoration: 'none',
-          gap: 0
-        }}
-        href='/'
+          href='/'
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            textDecoration: 'none',
+            gap: 0
+          }}
         >
-          <Box
-            sx={{
-               marginRight: '-1px'
-            }}
-          >
+          <Box marginRight="-1px">
             <IconEndLeft/>
           </Box>
           
-          <Button
-            variant='contactUs'
-
-          >
+          <Button variant="contactUs">
             <Typography
-            sx={{
-              fontFamily: "Funnel Display",
-              fontWeight: 600,
-              letterSpacing: '0.0625rem'
-            }}
-            >{headerData.ctaButton.text}</Typography>
+              fontFamily="Funnel Display"
+              fontWeight={600}
+              letterSpacing="0.0625rem"
+            >
+              {headerData.ctaButton.text}
+            </Typography>
+            
             <ArrowRightSvg/>
-          </Button>
+          </Button> 
           <IconEndRight/>
         </Link>
       </Box>

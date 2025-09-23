@@ -1,144 +1,86 @@
 // Footer Component
 import React from 'react';
-import { Box, Typography, Link, IconButton, Grid } from '@mui/material';
-import { LinkedIn, GitHub, Instagram } from '@mui/icons-material';
-import { footerData } from '@/mock/footer.mock';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import { LogoSvg } from '@/assets/icons';
 import IconSocialMedia from './ui/IconSocialMedia';
 import { footerNavigation } from '@/mock/footerNavigation.mock';
 
 const Footer = () => {
-
   return (
     <Box
       component="footer"
-      sx={{
-        borderTop: '1px solid #262626',
-        backgroundColor: '#0b0b0b',
-        color: 'white',
-        pt: 11,
-        mt: 'auto'
-      }}
+      mt="auto"
+      pt={11}
+      borderTop="1px solid #262626"
+      bgcolor="primary.main"
+      color="white"
     >
-      <Box
-        sx={{
-          mx: 'auto',
-          px: 8,
-        }}
-      >
+      <Box mx="auto" px={8}>
         {/* Main Footer Content */}
-        <Box
-          sx={{
-            bgcolor: 'pink',
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 4,
-            mb: 20,
-          }}
-        >
+        <Box display="flex" flexDirection="row" gap={4} mb={20}>
           {/* Company Info */}
-          <Box 
-          sx={{
-            bgcolor: 'red',
-            width: '30%'
-          }}
-          >
+          <Box width="30%">
             <Box mb={3}>
-              <LogoSvg/>
+              <LogoSvg />
             </Box>
-            <Typography
-            variant='h9'
-            >
-              Mood Global Service B.V.
-            </Typography>
-            <Typography
-            mb={4}
-            mt={1}
-            variant='body2'
-            >
-              {footerData.companyInfo.description}
-            </Typography>
+            {footerNavigation
+              .filter(section => section.id === 1)
+              .map(section => (
+                <Box key={section.id}>
+                  <Typography variant="h9">
+                    {section.title}
+                  </Typography>
+                  <Typography variant="body2" mt={1} mb={4}>
+                    {section.blockchainFirm}
+                  </Typography>
+                </Box>
+              ))}
             
             {/* Social Links */}
-            <IconSocialMedia/>
+            <IconSocialMedia />
           </Box>
 
-          <Grid
-          gap={16}
-          sx={{
-            ml: 'auto',
-            bgcolor: 'green',
-            display: 'flex',
-            width: '55%',
-            flexDirection: 'row',
-          }}
+          <Grid 
+            container 
+            gap={16} 
+            ml="auto" 
+            width="55%"
+            flexDirection="row"
           >
             {/* Navigation */}
-            <Box sx={{ bgcolor: 'blue' }}>
+            <Box pt={1}>
               {footerNavigation
-                .filter(section => section.id === 1)
+                .filter(section => section.id === 2)
                 .map(section => (
                   <Box key={section.id}>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: 'white',
-                        fontWeight: 600,
-                        fontSize: '1rem',
-                        mb: 2
-                      }}
-                    >
+                    <Typography variant="body1" mb={3}>
                       {section.title}
                     </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    <Box display="flex" flexDirection="column" gap={1}>
                       {section.home && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem',
-                            lineHeight: 1.5
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.home}
                         </Typography>
                       )}
                       {section.services && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem'
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.services}
                         </Typography>
                       )}
                       {section.siteLab && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem'
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.siteLab}
                         </Typography>
                       )}
                       {section.blockAI && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem'
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.blockAI}
                         </Typography>
                       )}
                       {section.about && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem'
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.about}
                         </Typography>
                       )}
@@ -148,51 +90,27 @@ const Footer = () => {
             </Box>
 
             {/* Legal */}
-            <Box sx={{ bgcolor: 'blue' }}>
+            <Box pt={1}>
               {footerNavigation
-                .filter(section => section.id === 2)
+                .filter(section => section.id === 3)
                 .map(section => (
                   <Box key={section.id}>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: 'white',
-                        fontWeight: 600,
-                        fontSize: '1rem',
-                        mb: 2
-                      }}
-                    >
+                    <Typography variant="body1" mb={3}>
                       {section.title}
                     </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    <Box display="flex" flexDirection="column" gap={1}>
                       {section.privacyPolicy && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem',
-                            lineHeight: 1.5
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.privacyPolicy}
                         </Typography>
                       )}
                       {section.termsAndConditions && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem'
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.termsAndConditions}
                         </Typography>
                       )}
                       {section.cookiePolicy && (
-                        <Typography
-                          sx={{
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '0.875rem'
-                          }}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.cookiePolicy}
                         </Typography>
                       )}
@@ -202,84 +120,55 @@ const Footer = () => {
             </Box>
 
             {/* Contact */}
-            <Box sx={{ 
-              bgcolor: 'blue',
-              width: 'fit-content' 
-              }}>
+            <Box pt={1} width="fit-content">
               {footerNavigation
-                .filter(section => section.id === 3)
+                .filter(section => section.id === 4)
                 .map(section => (
-                  <div key={section.id}>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: 'white',
-                        fontWeight: 600,
-                        fontSize: '1rem',
-                        mb: 2
-                      }}
-                    >
+                  <Box key={section.id}>
+                    <Typography variant="body1" mb={3}>
                       {section.title}
                     </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    <Box display="flex" flexDirection="column" gap={1}>
                       {section.address && (
-                        <Typography
-                        sx={{
-                          width: '15rem',
-                        }}
-                        >
+                        <Typography variant="body3" mb={2} width="15rem">
                           {section.address}
                         </Typography>
                       )}
                       {section.email && (
-                        <Link
-                          href={`mailto:${section.email}`}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.email}
-                        </Link>
+                        </Typography>
                       )}
                       {section.kvk && (
-                        <Typography
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.kvk}
                         </Typography>
                       )}
                       {section.phone && (
-                        <Link
-                          href={`tel:${section.phone}`}
-                        >
+                        <Typography variant="body3" mb={2}>
                           {section.phone}
-                        </Link>
+                        </Typography>
                       )}
                     </Box>
-                  </div>
+                  </Box>
                 ))}
             </Box>
-
           </Grid>
         </Box>
-
       </Box>
-        {/* Copyright */}
-        <Box
-          py={3}
-          sx={{
-            borderTop: '1px solid #262626',
-            display: 'flex',
-            width: 'full',
-            textAlign: 'left'
-          }}
-        >
-          <Typography
-            ml={5}
-            sx={{
-              color: 'rgba(255,255,255,0.6)',
-              fontSize: '0.75rem'
-            }}
-          >
-            {footerData.copyright}
-          </Typography>
-        </Box>
+
+      {/* Copyright */}
+      <Box 
+        py={3} 
+        borderTop="1px solid #262626" 
+        display="flex" 
+        width="full" 
+        textAlign="left"
+      >
+        <Typography variant="body3" ml={5}>
+          © 2024 Mood Global Services B.V. All rights reserved.
+        </Typography>
+      </Box>
     </Box>
   );
 };

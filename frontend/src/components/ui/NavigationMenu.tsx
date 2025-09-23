@@ -1,6 +1,6 @@
 'use client' 
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box } from '@mui/material'
 import { ChevronDown } from '@/assets/icons' 
 
@@ -145,6 +145,28 @@ export function NavigationMenuContent({
   children,
   ...props
 }: NavigationMenuContentProps) {
+  const [centerOffset, setCenterOffset] = useState(0)
+
+  useEffect(() => {
+    const updateCenterOffset = () => {
+      // Obtener el elemento trigger más cercano para calcular la posición
+      const triggerElement = document.querySelector('[data-slot="navigation-menu-trigger"]')
+      if (triggerElement) {
+        const triggerRect = triggerElement.getBoundingClientRect()
+        const viewportCenter = window.innerWidth / 2
+        const triggerCenter = triggerRect.left + (triggerRect.width / 2)
+        const offset = viewportCenter - triggerCenter
+        setCenterOffset(offset)
+      }
+    }
+
+    // Actualizar al montar y cuando cambie el tamaño de ventana
+    updateCenterOffset()
+    window.addEventListener('resize', updateCenterOffset)
+    
+    return () => window.removeEventListener('resize', updateCenterOffset)
+  }, [])
+
   return (
     <Box
       component={RadixNavigationMenu.Content}
@@ -153,7 +175,7 @@ export function NavigationMenuContent({
       sx={{
         position: 'absolute',
         top: 45,
-        left: '50%',
+        left: centerOffset,
         transform: 'translateX(-50%)',
         zIndex: 50,
         mt: 1.5,
@@ -161,10 +183,9 @@ export function NavigationMenuContent({
         borderBottomLeftRadius: '12px',
         borderBottomRightRadius: '12px',
         border: '6px solid #1D1D1D',
-        backgroundColor: '#0B0B0B',
+        backgroundColor: 'primary.main',
         p: 0, 
         color: 'white',
-        width: '40rem',
         ...sx
       }}
       {...props}
@@ -204,7 +225,6 @@ export function NavigationMenuContentItem({
       sx={{
         position: 'relative',
         borderRadius: '8px',
-        bgcolor: 'green',
         p: 2,
         outline: 'none',
         display: 'block',
